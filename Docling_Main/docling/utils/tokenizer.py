@@ -5,7 +5,7 @@ from transformers.tokenization_utils_base import PreTrainedTokenizerBase
 
 
 # Create a wrapper class to make OpenAI's tokenizer compatible with the HybridChunker interface
-class OpenAITokenizerWrapper(PreTrainedTokenizerBase):
+class OpenAICompatibleTokenizerWrapper(PreTrainedTokenizerBase):
     """Minimal wrapper for OpenAI's tokenizer."""
 
     def __init__(

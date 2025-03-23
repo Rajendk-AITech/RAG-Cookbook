@@ -2,7 +2,7 @@ from docling.chunking import HybridChunker
 from docling.document_converter import DocumentConverter
 from dotenv import load_dotenv
 from openai import OpenAI
-from utils.tokenizer import OpenAITokenizerWrapper
+from utils.tokenizer import OpenAICompatibleTokenizerWrapper
 
 load_dotenv()
 
@@ -10,16 +10,17 @@ load_dotenv()
 client = OpenAI()
 
 
-tokenizer = OpenAITokenizerWrapper()  # Load our custom tokenizer for OpenAI
+tokenizer = OpenAICompatibleTokenizerWrapper()  # Load our custom tokenizer for OpenAI
 MAX_TOKENS = 8191  # text-embedding-3-large's maximum context length
 
 
 # --------------------------------------------------------------
 # Extract the data
+# https://www.apple.com/newsroom/pdfs/fy2024-q1/FY24_Q1_Consolidated_Financial_Statements.pdf
 # --------------------------------------------------------------
 
 converter = DocumentConverter()
-result = converter.convert("https://arxiv.org/pdf/2408.09869")
+result = converter.convert("https://www.apple.com/newsroom/pdfs/fy2024-q1/FY24_Q1_Consolidated_Financial_Statements.pdf")
 
 
 # --------------------------------------------------------------
