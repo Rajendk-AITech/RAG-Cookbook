@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from lancedb.embeddings import get_registry
 from lancedb.pydantic import LanceModel, Vector
 from openai import OpenAI
-from utils.tokenizer import OpenAITokenizerWrapper
+from utils.tokenizer import OpenAICompatibleTokenizerWrapper
 
 load_dotenv()
 
@@ -15,7 +15,7 @@ load_dotenv()
 client = OpenAI()
 
 
-tokenizer = OpenAICompatibleTokenizerWrappe()  # Load our custom tokenizer for OpenAI
+tokenizer = OpenAICompatibleTokenizerWrapper()  # Load our custom tokenizer for OpenAI
 MAX_TOKENS = 8191  # text-embedding-3-large's maximum context length
 
 
@@ -24,7 +24,7 @@ MAX_TOKENS = 8191  # text-embedding-3-large's maximum context length
 # --------------------------------------------------------------
 
 converter = DocumentConverter()
-result = converter.convert("https://arxiv.org/pdf/2408.09869")
+result = converter.convert("https://www.safetyforward.com/docs/legal.pdf")
 
 
 # --------------------------------------------------------------
@@ -48,11 +48,18 @@ chunks = list(chunk_iter)
 db = lancedb.connect("data/lancedb")
 
 
-# Get the OpenAI embedding function
+# Get the OpenAI embedding function as a function and use text-embedding-3-large model for embedding
 func = get_registry().get("openai").create(name="text-embedding-3-large")
 
+#--------------------------------------------------------------
+# Defining a simplified metadata schema 
+## Schema Definition
+#
+#-   Defines two Pydantic models:
+#    -   `ChunkMetadata`: Stores metadata about each chunk (filename, page numbers, title)
+#    -   `Chunks`: Main schema with text content, vector embeddings, and metadata
+#--------------------------------------------------------------
 
-# Define a simplified metadata schema
 class ChunkMetadata(LanceModel):
     """
     You must order the fields in alphabetical order.
@@ -107,8 +114,15 @@ processed_chunks = [
 table.add(processed_chunks)
 
 # --------------------------------------------------------------
-# Load the table
+# Load the table and export to Excel
 # --------------------------------------------------------------
 
-table.to_pandas()
-table.count_rows()
+# Convert to pandas DataFrame
+df = table.to_pandas()
+print(f"Total rows in table: {table.count_rows()}")
+
+# Export DataFrame to Excel
+excel_path = "data/embedded_chunks.xlsx"
+print(f"Exporting data to {excel_path}...")
+df.to_excel(excel_path, index=False)
+print(f"Data successfully exported to {excel_path}")
