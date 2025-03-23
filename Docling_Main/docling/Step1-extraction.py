@@ -20,6 +20,16 @@ json_output = document.export_to_dict()
 print(markdown_output)
 
 # --------------------------------------------------------------
+# Basic Excel file  extraction
+# --------------------------------------------------------------
+result = converter.convert("C:/Users/rajen/OneDrive/Documents/GitHub/RAG-Cookbook/Docling_Main/docling/uploaded_file.xlsx")
+
+document = result.document
+markdown_output = document.export_to_markdown()
+json_output = document.export_to_dict()
+print(markdown_output)
+
+# --------------------------------------------------------------
 # Basic HTML extraction
 # --------------------------------------------------------------
 
