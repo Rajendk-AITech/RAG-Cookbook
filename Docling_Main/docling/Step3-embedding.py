@@ -15,7 +15,7 @@ load_dotenv()
 client = OpenAI()
 
 
-tokenizer = OpenAITokenizerWrapper()  # Load our custom tokenizer for OpenAI
+tokenizer = OpenAICompatibleTokenizerWrappe()  # Load our custom tokenizer for OpenAI
 MAX_TOKENS = 8191  # text-embedding-3-large's maximum context length
 
 

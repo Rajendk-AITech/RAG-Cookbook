@@ -148,5 +148,5 @@ For more details, explore [Docling’s Chunking Concepts](https://docling-projec
 
 -   **📖 Official Documentation:** [Docling Docs](https://docling-project.github.io/docling/)
 -   **🔬 Example Notebooks & Guides:** [GitHub Repository](https://github.com/docling-project/docling)
-
+-    🛢️  **LanceDB DOCs**  [Lance DB](https://github.com/lancedb/lancedb)
 Explore **Docling** and start building intelligent **knowledge extraction pipelines today! 🚀**
