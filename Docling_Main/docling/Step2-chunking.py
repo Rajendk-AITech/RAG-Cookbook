@@ -20,7 +20,7 @@ MAX_TOKENS = 8191  # text-embedding-3-large's maximum context length
 # --------------------------------------------------------------
 
 converter = DocumentConverter()
-result = converter.convert("https://www.apple.com/newsroom/pdfs/fy2024-q1/FY24_Q1_Consolidated_Financial_Statements.pdf")
+result = converter.convert("https://www.safetyforward.com/docs/legal.pdf")
 
 
 # --------------------------------------------------------------
@@ -30,10 +30,17 @@ result = converter.convert("https://www.apple.com/newsroom/pdfs/fy2024-q1/FY24_Q
 chunker = HybridChunker(
     tokenizer=tokenizer,
     max_tokens=MAX_TOKENS,
-    merge_peers=True,
+    merge_peers=True, #put smaller chunks together
 )
 
 chunk_iter = chunker.chunk(dl_doc=result.document)
 chunks = list(chunk_iter)
 
-len(chunks)
+# Print each chunk on a separate line with an index
+print("Chunks:")
+for i, chunk in enumerate(chunks):
+    print(f"Chunk {i+1}:")
+    print(chunk)
+    print("-" * 50)  # Separator between chunks
+
+print("Number of chunks:", len(chunks))
