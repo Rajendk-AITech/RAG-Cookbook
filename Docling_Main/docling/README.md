@@ -1,6 +1,6 @@
 # **Creating a Robust Knowledge Extraction Pipeline with Docling**  
 
-[Docling](https://github.com/DS4SD/docling) is a powerful and flexible open-source document processing library that transforms various document formats into a unified structure. It leverages cutting-edge AI models for **layout analysis** and **table structure recognition**, allowing for deeper document understanding.  
+[Docling](https://github.com/docling-project/docling) is a powerful and flexible open-source document processing library that transforms various document formats into a unified structure. It leverages cutting-edge AI models for **layout analysis** and **table structure recognition**, allowing for deeper document understanding.  
 
 Designed to run locally on standard computers, Docling is highly **extensible**—developers can integrate new models or customize pipelines for specific use cases. It is particularly valuable for **enterprise document search, passage retrieval, and knowledge extraction**. With its advanced segmentation and processing capabilities, Docling is a powerful tool for **Retrieval-Augmented Generation (RAG)-based AI applications**.  
 
@@ -66,7 +66,7 @@ Once the server is running, navigate to **[http://localhost:8501](http://localho
 | **USPTO XML**         | Patent documents                                   |
 | **PMC XML**           | PubMed Central articles                            |
 
-For a complete and **updated list**, refer to [this page](https://ds4sd.github.io/docling/supported_formats/) .
+For a complete and **updated list**, refer to [this page](https://docling-project.github.io/docling/usage/supported_formats/) .
 
 ----------
 
@@ -140,13 +140,13 @@ With **Docling’s intelligent chunking**, RAG applications benefit from:
 ✅ Improved **semantic understanding** for AI models  
 ✅ **Optimized query responses**
 
-For more details, explore [Docling’s Chunking Concepts](https://ds4sd.github.io/docling/concepts/chunking/) .
+For more details, explore [Docling’s Chunking Concepts](https://docling-project.github.io/docling/examples/hybrid_chunking/) .
 
 ----------
 
 ## **Further Resources**
 
--   **📖 Official Documentation:** [Docling Docs](https://ds4sd.github.io/docling/)
--   **🔬 Example Notebooks & Guides:** [GitHub Repository](https://github.com/DS4SD/docling)
+-   **📖 Official Documentation:** [Docling Docs](https://docling-project.github.io/docling/)
+-   **🔬 Example Notebooks & Guides:** [GitHub Repository](https://github.com/docling-project/docling)
 
 Explore **Docling** and start building intelligent **knowledge extraction pipelines today! 🚀**
