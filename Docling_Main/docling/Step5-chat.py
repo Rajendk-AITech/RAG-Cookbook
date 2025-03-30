@@ -1,10 +1,14 @@
+import os
 import streamlit as st
 import lancedb
 from openai import OpenAI
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+# Get the directory where this script is located
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# Load .env file from the script directory
+load_dotenv(os.path.join(script_dir, ".env"))
 
 # Initialize OpenAI client
 client = OpenAI()
@@ -46,7 +50,9 @@ def get_context(query: str, table, num_results: int = 5) -> str:
         source_parts = []
         if filename:
             source_parts.append(filename)
-        if page_numbers:
+        if isinstance(page_numbers, (list, tuple)) and len(page_numbers) > 0:
+            source_parts.append(f"p. {', '.join(str(p) for p in page_numbers)}")
+        elif hasattr(page_numbers, 'size') and page_numbers.size > 0:  # For numpy arrays
             source_parts.append(f"p. {', '.join(str(p) for p in page_numbers)}")
 
         source = f"\nSource: {' - '.join(source_parts)}"
