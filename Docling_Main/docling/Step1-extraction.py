@@ -45,6 +45,13 @@ print(markdown_output)
 # --------------------------------------------------------------
 
 sitemap_urls = get_sitemap_urls("https://www.langchain.com/")
+
+# Print the sitemap URLs
+print("\nSitemap URLs from https://www.langchain.com/:")
+for i, url in enumerate(sitemap_urls, 1):
+    print(f"{i}. {url}")
+print(f"\nTotal URLs found: {len(sitemap_urls)}")
+
 conv_results_iter = converter.convert_all(sitemap_urls)
 
 docs = []
@@ -52,3 +59,21 @@ for result in conv_results_iter:
     if result.document:
         document = result.document
         docs.append(document)
+
+# Print information about all collected documents
+print("\nCollected Documents:")
+for i, doc in enumerate(docs, 1):
+    # Print document title or URL if available
+    title = getattr(doc, 'title', None) or getattr(doc, 'url', f"Document {i}")
+    print(f"\n{i}. {title}")
+    
+    # Print document content (markdown format)
+    try:
+        markdown = doc.export_to_markdown()
+        # Print first 200 characters of content as preview
+        preview = markdown[:200] + "..." if len(markdown) > 200 else markdown
+        print(f"Preview: {preview}")
+    except Exception as e:
+        print(f"Could not export document to markdown: {e}")
+
+print(f"\nTotal documents collected: {len(docs)}")
