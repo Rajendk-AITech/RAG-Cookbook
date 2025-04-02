@@ -23,7 +23,7 @@ print(markdown_output)
 # Basic Excel file  extraction
 # Excel file 
 # --------------------------------------------------------------
-result = converter.convert("C:/Users/rajen/OneDrive/Documents/GitHub/RAG-Cookbook/Docling_Main/docling/uploaded_file.xlsx")
+result = converter.convert("your folder path/Docling_Main/docling/uploaded_file.xlsx")
 
 document = result.document
 markdown_output = document.export_to_markdown()
